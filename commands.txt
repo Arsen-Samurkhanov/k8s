@@ -1,3 +1,9 @@
 kubectl create serviceaccount build_bot
 kubectl get serviceaccounts 
 kubectl describe serviceaccount build_bot
+kubectl delete serviceaccount build_bot
+
+kubectl create role read-only --verb=list,get,watch --resource=pods,deployments,services
+kubectl get roles
+kubectl describe role read-only
+kubectl delete role read-only
