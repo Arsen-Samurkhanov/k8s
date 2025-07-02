@@ -7,3 +7,17 @@ kubectl create role read-only --verb=list,get,watch --resource=pods,deployments,
 kubectl get roles
 kubectl describe role read-only
 kubectl delete role read-only
+
+kubectl create rolebinding read-only-binding --role=read-only --user=johndoe
+kubectl get rolebindings
+
+kubectl config current-context
+kubectl get deployments
+kubectl get replicasets
+kubectl delete deployment myapp
+kubectl get nodes
+
+kubectl create namespace apps
+kubectl run operator --image=nginx:1.21.1 -n apps
+kubectl get pods -n apps
+kubectl port-forward  operator 8181:80 -n apps
