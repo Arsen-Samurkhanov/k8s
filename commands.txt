@@ -21,3 +21,9 @@ kubectl create namespace apps
 kubectl run operator --image=nginx:1.21.1 -n apps
 kubectl get pods -n apps
 kubectl port-forward  operator 8181:80 -n apps
+
+kubectl proxy
+http://127.0.0.1:8001/
+curl http://127.0.0.1:8001/api/v1/namespaces/apps/pods/operator:80/proxy/
+curl -XDELETE http://127.0.0.1:8001/api/v1/namespaces/apps/pods/operator
+
