@@ -27,3 +27,16 @@ http://127.0.0.1:8001/
 curl http://127.0.0.1:8001/api/v1/namespaces/apps/pods/operator:80/proxy/
 curl -XDELETE http://127.0.0.1:8001/api/v1/namespaces/apps/pods/operator
 
+
+
+kubectl create deployment app-cache --image=memcached:1.6.8 --replicas=4
+kubectl get deployments
+kubectl describe deployment app-cache
+kubectl get deployments,pods,replicasets
+kubectl delete deployment app-cache
+
+kubectl set image deployment app-cache memcached=memcached:1.6.10 --record
+kubectl get deployments -o wide
+kubectl rollout history deployment app-cache
+kubectl rollout history deployments app-cache --revision=2
+kubectl rollout undo deployment app-cache --to-revision=1
