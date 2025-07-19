@@ -40,3 +40,11 @@ kubectl get deployments -o wide
 kubectl rollout history deployment app-cache
 kubectl rollout history deployments app-cache --revision=2
 kubectl rollout undo deployment app-cache --to-revision=1
+
+
+kubectl scale deployment app-cache --replicas=6
+kubectl scale statfulset redis --replicas=3
+kubectl create -f redis.yaml
+kubectl get statefulsets
+kubectl get statefulset redis
+kubectl get pods
