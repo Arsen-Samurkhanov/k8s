@@ -48,3 +48,8 @@ kubectl create -f redis.yaml
 kubectl get statefulsets
 kubectl get statefulset redis
 kubectl get pods
+
+
+kubectl autoscale deployment app-cache --cpu-percent=80 --min=3 --max=5
+kubectl get hpa
+kubectl describe hpa app-cache
