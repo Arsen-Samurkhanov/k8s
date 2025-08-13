@@ -53,3 +53,16 @@ kubectl get pods
 kubectl autoscale deployment app-cache --cpu-percent=80 --min=3 --max=5
 kubectl get hpa
 kubectl describe hpa app-cache
+
+
+kubectl create configmap db-config --from-literal=DB_HOST=mysql-service --from-literal=DB_USER=backend
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-config
+data:
+  DB_HOST: mysql-service
+  DB_USER: backend
+
+kubectl exec backend -- env
