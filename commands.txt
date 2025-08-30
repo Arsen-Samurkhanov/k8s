@@ -55,6 +55,8 @@ kubectl get hpa
 kubectl describe hpa app-cache
 
 
+
+
 kubectl create configmap db-config --from-literal=DB_HOST=mysql-service --from-literal=DB_USER=backend
 
 apiVersion: v1
@@ -66,3 +68,25 @@ data:
   DB_USER: backend
 
 kubectl exec backend -- env
+
+
+
+
+kubectl create secret generic db-creds --from-literal=pwd=s3cre!
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: db-creds
+type: Opaque
+data:
+  pwd: czNjcmUh
+
+  apiVersion: v1
+kind: Secret
+metadata:
+  name: secret-basic-auth
+type: kubernetes.io/basic-auth
+stringData:
+  username: bmuschko
+  password: secret
