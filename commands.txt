@@ -90,3 +90,15 @@ type: kubernetes.io/basic-auth
 stringData:
   username: bmuschko
   password: secret
+
+
+
+kubectl logs multi-container -c sidecar
+
+kubectl run echoserver --image=k8s.gcr.io/echoserver:1.10 --restart=Never --port=8080
+kubectl create service clusterip echoserver --tcp=80:8080
+kubectl run echoserver --image=k8s.gcr.io/echoserver:1.10 --restart=Never --port=8080 --expose
+
+minikube addons enable ingress
+kubectl get pods -n ingress-nginx
+kubectl create ingress corellian --rule="star-alliance.com/corellian/api=corellian:8080"
